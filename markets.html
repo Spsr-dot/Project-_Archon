@@ -250,5 +250,26 @@
     </div>
   </footer>
 
+  <script>
+  const tabs = document.querySelectorAll('.category-tab');
+  const sections = document.querySelectorAll('.market-section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Switch active class styling
+      document.querySelector('.category-tab.active')?.classList.remove('active');
+      tab.classList.add('active');
+
+      // Get text (e.g., "crypto", "forex")
+      const filter = tab.textContent.toLowerCase().trim();
+
+      // Show/hide matching sections
+      sections.forEach(sec => {
+        const title = sec.querySelector('.market-section__title')?.textContent.toLowerCase();
+        sec.style.display = (filter === 'all markets' || title.includes(filter)) ? 'block' : 'none';
+      });
+    });
+  });
+</script>
 </body>
 </html>
